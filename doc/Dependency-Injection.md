@@ -108,6 +108,7 @@ Có 3 mức độ vòng đời
 3. Hierarchy (cấp bậc): DI trong Angular hoạt động theo nguyên tắc cấp bậc (hierarchy). Nghĩa là nếu không tìm thấy một dependency trong scope hiện tại, DI sẽ tiếp tục tìm kiếm trong scope cha, và tiếp tục cho đến khi tìm thấy hoặc đạt đến scope root.
 
 **Destroyed Dependency Injection**
+
 Dependency Injection (DI) sẽ bị hủy (destroyed) khi một scope hoặc thành phần liên quan đến nó bị hủy.
 
 1. Hủy thành phần: Khi một thành phần được tạo và sử dụng DI, khi thành phần đó bị hủy, DI cũng sẽ bị hủy. Ví dụ, khi bạn đóng một trang hoặc xóa một thành phần khỏi ứng dụng, DI sẽ bị hủy theo đó.
