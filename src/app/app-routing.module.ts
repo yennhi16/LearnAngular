@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { ParantComponentComponent } from './components/interactionComponents/parant-component/parant-component.component';
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'dashboard', component: DashboardComponent },
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'interaction-component', component: ParantComponentComponent },
 ];
 
 @NgModule({

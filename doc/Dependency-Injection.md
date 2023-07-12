@@ -118,3 +118,5 @@ Dependency Injection (DI) sẽ bị hủy (destroyed) khi một scope hoặc th�
 3. Cập nhật DI container: Nếu DI container của Angular bị cập nhật hoặc tái tạo (recreated), DI cũng sẽ bị hủy và được tạo lại theo cấu hình mới. Điều này có thể xảy ra khi bạn thay đổi cấu hình ứng dụng hoặc cập nhật phiên bản của Angular.
 
 4. Hủy dependencies: Nếu một dependency bị hủy, DI cũng có thể bị ảnh hưởng. Ví dụ, nếu một service bị hủy, các thành phần sử dụng service đó thông qua DI cũng có thể không còn sử dụng được.
+
+## Hierarchical injectors

@@ -13,6 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/inMemoryDataService/in-memory-data.service';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
+import { ChildComponentComponent } from './components/interactionComponents/child-component/child-component.component';
+import { ParantComponentComponent } from './components/interactionComponents/parant-component/parant-component.component';
+import { MissionControlComponent } from './components/interactionComponents/mission-control/mission-control.component';
+import { AstronautComponent } from './components/interactionComponents/astronaut/astronaut.component';
+import { HeroItemComponent } from './components/hero-item/hero-item.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,11 @@ import { HeroSearchComponent } from './components/hero-search/hero-search.compon
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
+    ChildComponentComponent,
+    ParantComponentComponent,
+    MissionControlComponent,
+    AstronautComponent,
+    HeroItemComponent,
   ],
   imports: [
     BrowserModule,

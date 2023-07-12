@@ -1,0 +1,13 @@
+<hr>
+<h2>Parent listens for child event
+</h2>
+<h3>
+    Pass data from parent to child with input binding
+</h3>
+<h3>Should mankind colonize the Universe?</h3>
+<h3>Agree: {{agreed}}, Disagree: {{disagreed}}</h3>
+
+<app-child-component *ngFor="let voter of voters" [name]="voter" (voted)="onVoted($event)">
+</app-child-component>
+<hr>
+<app-mission-control></app-mission-control>

@@ -1,0 +1,7 @@
+<a routerLink="/detail/{{hero.id}}">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+
+</a>
+<button type="button" class="delete" title="delete hero" (click)="delete(hero)">x</button>
+<button class="like" (click)="handleVoted(true)" [disabled]="didvote">Like</button>
+<button class="disLike" (click)="handleVoted(false)" [disabled]="didvote">Dislike</button>
