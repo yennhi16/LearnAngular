@@ -18,6 +18,11 @@ import { ParantComponentComponent } from './components/interactionComponents/par
 import { MissionControlComponent } from './components/interactionComponents/mission-control/mission-control.component';
 import { AstronautComponent } from './components/interactionComponents/astronaut/astronaut.component';
 import { HeroItemComponent } from './components/hero-item/hero-item.component';
+import { ParentComponent } from './components/directives/parent/parent.component';
+import { HighlightDirective } from './directive/highlight.directive';
+import { UnlessDirective } from './directive/unless.directive';
+import { IfLoadedDirective } from './directive/if-loaded.directive';
+import { ChildComponent } from './components/directives/child/child.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +37,11 @@ import { HeroItemComponent } from './components/hero-item/hero-item.component';
     MissionControlComponent,
     AstronautComponent,
     HeroItemComponent,
+    ParentComponent,
+
+    UnlessDirective,
+    IfLoadedDirective,
+    ChildComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +51,7 @@ import { HeroItemComponent } from './components/hero-item/hero-item.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+    HighlightDirective,
   ],
   providers: [],
   bootstrap: [AppComponent],

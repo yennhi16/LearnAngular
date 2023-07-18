@@ -14,8 +14,8 @@ export class MissionService {
   // Service message commands
   announceMission(mission: string) {
     this.missionAnnouncedSource.next(mission);
-    // console.log(this.missionAnnounced$);
-    // console.log(this.missionAnnouncedSource);
+    console.log(this.missionAnnounced$);
+    console.log(this.missionAnnouncedSource);
   }
 
   confirmMission(astronaut: string) {

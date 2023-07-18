@@ -13,18 +13,10 @@ export class HeroItemComponent {
   @Output() heroDelete = new EventEmitter<Hero>();
   @Output() voted = new EventEmitter<boolean>();
 
-  constructor(private heroService: HeroService) {}
-  // heroes: Hero[] = [];
+  // constructor(private heroService: HeroService) {}
+  // // heroes: Hero[] = [];
 
   didvote = false;
-
-  // ngOnInit(): void {
-  //   this.getHeroes();
-  // }
-
-  // getHeroes(): void {
-  //   this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
-  // }
 
   delete(hero: Hero): void {
     this.heroDelete.emit(hero);
