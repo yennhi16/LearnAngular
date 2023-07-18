@@ -19,13 +19,13 @@ export class UnlessDirective implements OnChanges {
   ) {}
 
   @Input() set appUnless(condition: boolean) {
-    if (!condition && !this.hasView) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
-      this.hasView = true;
-    } else if (condition && this.hasView) {
-      this.viewContainer.clear();
-      this.hasView = false;
-    }
+    // if (!condition && !this.hasView) {
+    //   this.viewContainer.createEmbeddedView(this.templateRef);
+    //   this.hasView = true;
+    // } else if (condition && this.hasView) {
+    //   this.viewContainer.clear();
+    //   this.hasView = false;
+    // }
   }
   @Input('appUnlessElse') placeholder: TemplateRef<any> | null = null;
 

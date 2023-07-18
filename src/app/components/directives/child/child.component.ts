@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HighlightDirective } from 'src/app/directive/highlight.directive';
 
 @Component({
@@ -12,6 +12,12 @@ import { HighlightDirective } from 'src/app/directive/highlight.directive';
     },
   ],
 })
-export class ChildComponent {
+export class ChildComponent implements OnInit {
   @Input() color: string = '';
+  constructor() {
+    console.log('ChildComponent - constructor');
+  }
+  ngOnInit(): void {
+    console.log('ChildComponent -  ngOnInit');
+  }
 }

@@ -395,19 +395,23 @@ Directives được sử dụng trong hostDirectives phải `standalone: true`
 
 ```
 @Component({
-  selector: 'app-child',
-  templateUrl: './child.component.html',
-  styleUrls: ['./child.component.scss'],
-  hostDirectives: [
-    {
-      directive: HighlightDirective,
-      inputs: ['appHighlight: color', 'defaultColor: black'],
-    },
-  ],
+  selector: 'admin-menu',
+  template: 'admin-menu.html',
+  hostDirectives: [{
+    directive: MenuBehavior,
+    inputs: ['menuId'],
+    outputs: ['menuClosed'],
+  }],
 })
+export class AdminMenu { }
 ```
 
-Directives used in hostDirectives must be standalone: true
+Ngoài ra ta có thể đặt lại tên cho input của directive
+
+```
+    inputs: ['menuId: id'],
+    outputs: ['menuClosed: closed'],
+```
 
 ## Adding directives to another directive
 
@@ -431,3 +435,63 @@ export class MenuWithTooltip { }
 export class SpecializedMenuWithTooltip { }
 
 ```
+
+## Host directive semantics
+
+### Directive execution order
+
+Host directives trải qua vòng đời giống như các components và directives được sử dụng trực tiếp trong template. Tuy nhiên, host directive thực thi các constructor, lifecycle hooks, và bindings trước component or directive mà chúng được áp dụng.
+
+```
+@Component({
+  selector: 'admin-menu',
+  template: 'admin-menu.html',
+  hostDirectives: [MenuBehavior],
+})
+export class AdminMenu { }
+```
+
+Vì vậy Host directive có thể ghi đè các bindings hoặc thay đổi hành vi của component hoặc directive mà nó áp dụng.
+Điều này cho phép tái sử dụng và mở rộng chức năng của các component và directive một cách linh hoạt.
+
+### Dependency injection
+
+Tất cả các components và directives trong Angular có thể định nghĩa các dependencies thông qua providers. Khi một component hoặc directive áp dụng host directives thông qua thuộc tính hostDirectives, các host directives cũng có thể định nghĩa các providers riêng của chúng.
+
+Trong trường hợp một component hoặc directive cùng với host directives cung cấp cùng một injection token, Angular sẽ ưu tiên sử dụng providers được định nghĩa bởi class chứa hostDirectives. Điều này có nghĩa là các dependencies được cung cấp bởi class chứa hostDirectives sẽ được sử dụng thay vì các dependencies được cung cấp bởi host directives.
+
+```
+@Injectable()
+class MyService {
+  getData(): string {
+    return 'Data from MyService';
+  }
+}
+
+@Directive({
+  selector: '[myDirective]',
+  providers: [
+    { provide: MyService, useClass: MyService }
+  ]
+})
+class MyDirective {
+  constructor(private myService: MyService) {}
+}
+
+@Component({
+  selector: 'my-component',
+  template: '<div myDirective></div>',
+  hostDirectives: [MyDirective],
+  providers: [
+    { provide: MyService, useClass: AnotherService }
+  ]
+})
+class MyComponent {
+  constructor(private myService: MyService) {
+    console.log(myService.getData()); // Output: "Data from MyService"
+  }
+}
+
+```
+
+Trong ví dụ trên, cả MyDirective và MyComponent đều cung cấp MyService thông qua providers. Tuy nhiên, MyComponent định nghĩa providers riêng với MyService được thay thế bởi AnotherService. Khi MyComponent được khởi tạo, MyService sẽ được cung cấp bởi AnotherService do providers được định nghĩa trong class MyComponent có ưu tiên hơn so với providers trong MyDirective.
