@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Hero } from 'src/app/interface/Hero';
 import { Item } from 'src/app/interface/Item';
 import { LoadingState } from 'src/app/interface/loading-state';
@@ -19,6 +20,7 @@ export class ParentComponent implements OnInit {
 
   styleFontStyle = 'italic';
   styleFontSize = 20;
+  test = 'hi i am here';
 
   nullCustomer: string | null = null;
   items: Item[] = [];
@@ -28,6 +30,8 @@ export class ParentComponent implements OnInit {
   conditionUnless = false;
   classColor = 'white';
   heroLoadingState: LoadingState<Hero> = { type: 'loading' };
+  violet = 'violet';
+  myContext = { $implicit: 'World', name: 'Svet' };
 
   // currentItem = {
   //   name: '',
@@ -68,7 +72,6 @@ export class ParentComponent implements OnInit {
     // this.itemsNoTrackByCount = 0;
   }
   setCurrentClasses() {
-    // CSS classes: added/removed per current state of component properties
     return (this.currentClasses = {
       saveable: this.canSave,
       modified: !this.isUnchanged,
@@ -142,7 +145,8 @@ export class ParentComponent implements OnInit {
     this.itemIdIncrement = 1;
   }
   ChangeOneID() {
-    this.items[2].id = 12;
+    // this.items[2].id = 12;
+    this.items[2].name = 'wwww';
   }
 
   trackById(index: number, item: any): number {
@@ -158,6 +162,9 @@ export class ParentComponent implements OnInit {
 
   onLoadHero(): void {
     this.heroLoadingState = { type: 'loaded', data: HEROES[0] };
+  }
+  onLoadHero2() {
+    this.heroLoadingState = { type: 'loading' };
   }
 
   // resetItems() {

@@ -1,0 +1,31 @@
+<p>main works!</p>
+
+<div #intervalValue>
+    1233
+</div>
+
+<div><code>observable|async</code>:
+    Time: {{ time | async }}</div>
+
+<h1>
+    List user
+</h1>
+<h2>Ajax</h2>
+<div>
+    <div class="user-item" *ngFor="let u of listUser">
+        <img [src]="u.avatar_url" alt="">
+        <h3> {{u.login}} </h3>
+    </div>
+</div>
+
+<div>
+    <h2>
+        BehaviorSubject
+    </h2>
+    <div class="behaviorSubject" #container></div>
+    <div>
+        <p>Interval Value: {{ valueInterval }}</p>
+    </div>
+
+
+</div>

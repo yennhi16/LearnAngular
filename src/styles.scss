@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+*{
+    font-family: Inter;
+}
+.cal-month-view .cal-day-number{
+    float: none;
+}
+.cal-month-view .cal-events{
+  display: none !important;
+}
+.cal-month-view .cal-day-badge{
+  float: none !important;
+  position: absolute;
+  bottom: 25px;
+  width: 90%;
+  padding: 10px 0;
+  margin-left: 5px;
+  background-color: 
+#bfe2fe;
+  color: blue;
+  border-radius: 4px;
+  text-align: left;
+  border-left: 2px solid blue;
+  padding-left: 5px;
+  font-weight: 500;
+}
+.cal-day-badge::after{
+    content: " sessions";
+}
+
+.cal-month-view .cal-cell-top{
+    position: relative;
+}
+.cal-day-number{
+    margin-left: 10px;
+}
+.cal-cell-top > span{
+    display: inline-block;
+    padding-top: 10px;
+}
+.cal-month-view .cal-day-cell.cal-today .cal-day-number{
+    font-size: 1.2em;
+
+    background-color: #1157C8;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+.cal-month-view .cal-day-cell.cal-today{
+    background-color: #fff;
+}
+.cal-month-view .cal-day-number{
+    opacity: 1;
+    margin-top: 0;
+}
+.cal-month-view .cal-header .cal-cell{
+    padding: 10px 0;
+    border-left: 1px solid #e1e1e1;
+    
+}
+.cal-cell-row.cal-header:last-child{
+    border-right: 1px solid #e1e1e1;
+}
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number{
+    color: black;
+}

@@ -4,6 +4,33 @@
     <a routerLink="/heroes">Heroes</a>
     <a routerLink="/interaction-component">Interaction Component</a>
     <a routerLink="/directives">Directives</a>
+    <a routerLink="/rxJS">RxJS</a>
+    <a routerLink="/operator">Operator</a>
+    <a routerLink="/reactive-forms">Reactive Form</a>
+    <a routerLink="/template-forms">Template Driven Form</a>
+    <a routerLink="/ngRx">NgRx</a>
 </nav>
+<!-- <input type="datetime-local" [ngModel]="dateInput" (ngModelChange)="handleChangeDateInput($event)"  >
+<mwl-calendar-month-view [viewDate]="viewDate"  [events]="events">
+</mwl-calendar-month-view> -->
+<!-- <div>
+    <mwl-calendar-week-view [viewDate]="viewDate" [events]="events">
+        <ng-template #weekViewEvent let-event="event">
+            <div class="custom-event">
+                <p>{{ event.title }}</p>
+                <p>Start: {{ event.start | date: 'mediumTime' }}</p>
+                <p>End: {{ event.end | date: 'mediumTime' }}</p>
+            </div>
+
+        </ng-template>
+    </mwl-calendar-week-view>
+</div> -->
+
+<div>
+    <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" >
+
+    </mwl-calendar-month-view>
+</div>
+
 
 <router-outlet></router-outlet>

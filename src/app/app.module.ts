@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -23,6 +23,24 @@ import { HighlightDirective } from './directive/highlight.directive';
 import { UnlessDirective } from './directive/unless.directive';
 import { IfLoadedDirective } from './directive/if-loaded.directive';
 import { ChildComponent } from './components/directives/child/child.component';
+import { TrigonometryDirective } from './directive/trigonometry.directive';
+import { MainComponent } from './components/RxJS/main/main.component';
+import { OperatorMapComponent } from './components/RxJS/operator-map/operator-map.component';
+import { ReactiveFormComponent } from './components/forms/reactive-form/reactive-form.component';
+import { TemplateFormComponent } from './components/forms/template-form/template-form.component';
+import { StoreModule } from '@ngrx/store';
+import { CounterComponent } from './components/ngRx/counter/counter.component';
+import { couterReducer } from './store/reducer/couter.reducer';
+import { BookItemComponent } from './components/ngRx/book-item/book-item.component';
+import { BookCollectionComponent } from './components/ngRx/book-collection/book-collection.component';
+import { bookReducer } from './store/reducer/book.reducer';
+import { bookListReducer } from './store/reducer/bookList.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { userReducer } from './store/reducer/user.reducer';
+import { UserEffects} from './store/effects/login.effects';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -42,6 +60,14 @@ import { ChildComponent } from './components/directives/child/child.component';
     UnlessDirective,
     IfLoadedDirective,
     ChildComponent,
+    TrigonometryDirective,
+    MainComponent,
+    OperatorMapComponent,
+    ReactiveFormComponent,
+    TemplateFormComponent,
+    CounterComponent,
+    BookItemComponent,
+    BookCollectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +78,14 @@ import { ChildComponent } from './components/directives/child/child.component';
       dataEncapsulation: false,
     }),
     HighlightDirective,
+    ReactiveFormsModule,
+    StoreModule.forRoot(
+      { count: couterReducer, books: bookListReducer, collection: bookReducer, user: userReducer },
+      
+    ),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([UserEffects]),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   providers: [],
   bootstrap: [AppComponent],

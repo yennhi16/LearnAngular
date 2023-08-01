@@ -20,7 +20,9 @@ export class IfLoadedDirective<T> {
   constructor(
     private readonly viewContainerRef: ViewContainerRef,
     private readonly templateRef: TemplateRef<unknown>
-  ) {}
+  ) {
+    console.log('IfLoadedDirective');
+  }
 
   static ngTemplateGuard_appIfLoaded<T>(
     dir: IfLoadedDirective<T>,

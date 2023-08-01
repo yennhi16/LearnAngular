@@ -1,0 +1,32 @@
+<p>operator-map works!</p>
+<div>
+    <!-- <h2>exhaustMap</h2> -->
+    <button #btnConcatMap>concatMap</button>
+    <button #btnMergeMap>mergeMap</button>
+    <button #btnSwitchMap>switchMap</button>
+    <button #btnExhaustMap>exhaustMap</button>
+    <button (click)="listItem = []">Clear</button>
+    <ul>
+        <li *ngFor="let i of listItem"> {{i}} </li>
+    </ul>
+</div>
+<div>
+    <h2>Concat vs merge</h2>
+    <button (click)="clickConcat()">Concat</button>
+    <button (click)="clickMerge()">Merge</button>
+    <button (click)="listNumber = []">Clear</button>
+    <ul>
+        <li *ngFor="let item of listNumber"> {{item}} </li>
+    </ul>
+</div>
+<div>
+    <h2> List</h2>
+    <button #btnUsers>Get User</button>
+    <button (click)="userList= []">Clear</button>
+
+    <div class="user-item" *ngFor="let u of userList">
+        <img [src]="u.avatar_url" alt="">
+        <h3> {{u.login}} </h3>
+    </div>
+
+</div>

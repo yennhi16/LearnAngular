@@ -23,4 +23,5 @@ export class Item {
   clone(): Item {
     return Object.assign(new Item(this.id), this);
   }
+  
 }

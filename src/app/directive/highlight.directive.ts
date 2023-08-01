@@ -12,6 +12,7 @@ import {
 })
 export class HighlightDirective implements OnInit {
   @Input() appHighlight = '';
+
   @Input() defaultColor = '';
 
   @Input() appFontStyle = '';
@@ -19,6 +20,7 @@ export class HighlightDirective implements OnInit {
   constructor(private el: ElementRef) {
     // this.el.nativeElement.style.backgroundColor = 'yellow';
     console.log('HighlightDirective - constructor');
+    console.log(el);
   }
   ngOnInit(): void {
     console.log('HighlightDirective - ngOnInit');

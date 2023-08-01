@@ -1,0 +1,24 @@
+<p>template-form works!</p>
+
+
+<form [formGroup]="loginform" (ngSubmit)="handleSubmit()" >
+  
+    <div>
+        <label for="email">Email</label>
+        
+        <input type="text" formControlName = "email" >
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+            {{email?.errors | json}}
+        </div>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" >
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            {{password?.errors | json}}
+        </div>
+    </div>
+
+    <button [disabled]="disbleBtn" >Submit</button>
+
+</form>

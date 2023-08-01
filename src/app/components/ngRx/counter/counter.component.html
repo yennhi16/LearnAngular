@@ -1,0 +1,25 @@
+<p>counter works!</p>
+
+<h3>
+    {{count$ | async}}
+</h3>
+<button (click)="handleIncerment()" >Increment</button>
+
+<button (click)="handleDecrement()">Decrement</button>
+
+<button (click)="handleReset()">Reset</button>
+
+<h1>Oliver Sacks Books Collection</h1>
+
+<h2>Books</h2>
+<app-book-collection class="book-list" [books]="(books$ | async)!" (add)="onAdd($event)"></app-book-collection>
+
+<h2>My Collection</h2>
+<app-book-item class="book-collection" [books]="(bookCollection$ | async)!" (remove)="onRemove($event)">
+</app-book-item>
+
+<!-- <app-book-item class="book-list" [books]="(books$ | async)!" (add)="onAdd($event)"></app-book-item>
+
+<h2>My Collection</h2>
+<app-book-collection class="book-collection" [books]="(bookCollection$ | async)!" (remove)="onRemove($event)">
+</app-book-collection> -->

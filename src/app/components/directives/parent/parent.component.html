@@ -33,6 +33,8 @@
         {{ isUnchanged ? "unchanged" : "modified" }} and
         {{ isSpecial ? "": "not"}} special </div>
     <br><br>
+
+
     <div [ngClass]="getClass()">Styled div</div>
 </div>
 <hr>
@@ -46,12 +48,20 @@
     <div [ngStyle]="setCurrentStyles()">
         This div is initially {{canSave? "italic": "normal"}}, normal weight, and extra large (24px).
     </div>
+    <hr>
+
+    <div [style]="setCurrentClasses()">
+        This div is initially {{canSave? "italic": "normal"}}, normal weight, and extra large (24px).
+    </div>
+    <div [style]="{'font-style': styleFontStyle, 'font-size.px': styleFontSize}">
+        This div is initially {{canSave? "italic": "normal"}}, normal weight, and extra large (24px).
+    </div>
 
 </div>
 
 <hr>
 <div>
-    <h1>NgModel examples</h1>
+    <h1>NgModel</h1>
     <hr>
     <p>Current item name: {{currentItem.name}}</p>
     <p>
@@ -65,11 +75,6 @@
     </p>
 
     <p>
-        <label for="example-change">(ngModelChange)="...name=$event":</label>
-        <input [ngModel]="currentItem.name" (ngModelChange)="currentItem.name=$event" id="example-change">
-    </p>
-
-    <p>
         <label for="example-uppercase">(ngModelChange)="setUppercaseName($event)"
         </label>
         <input [ngModel]="currentItem.name" (ngModelChange)="setUppercaseName($event)">
@@ -80,12 +85,22 @@
 <div>
     <h1>NgIf</h1>
     <hr>
-    <div *ngIf="isActive">This is example for ngif</div>
-    <button (click)="isActive = !isActive">Tonggle div tag </button>
+    <div *ngIf="isActive">This is example for ngIf</div>
+    <button (click)="isActive = !isActive">Toggle div tag </button>
 
     <div>
         <div *ngIf="condition; else elseBlock">Content to render when condition is true.</div>
-        <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+        <ng-template #elseBlock>
+            <div>Content to render when condition is false.</div>
+        </ng-template>
+        <!-- <div #elseBlock>Content to render when condition is false.</div> -->
+
+
+        <!-- <div *ngIf="condition;then Block else elseBlock">
+        </div>
+        <ng-template #elseBlock>Content to render when condition is true.</ng-template>
+        <ng-template #Block>Content to render when condition is false.</ng-template> -->
+
         <button (click)="condition = !condition">{{condition? "Condition is true": "Condition is true"}} </button>
     </div>
 
@@ -94,6 +109,7 @@
         <div *ngIf="nullCustomer">Hello, <span>{{nullCustomer}}</span></div>
         <button type="button" (click)="giveNullCustomerValue()">Give nullCustomer a value</button>
     </div>
+
     <div>
         <h3>hide vs. NgIf</h3>
         <div [hidden]="!isActive">This is example for hide</div>
@@ -115,10 +131,11 @@
 <div>
     <h4 id="ngFor-trackBy">*ngFor trackBy</h4>
     <button type="button" (click)="resetList()">Reset items</button>
-    <button type="button" (click)="changeIds()">Change ids</button>
+    <!-- <button type="button" (click)="resetList()">ChangeOneID</button> -->
     <button type="button" (click)="clearTrackByCounts()">Clear counts</button>
     <button type="button" (click)="ChangeOneID()">Change One ID</button>
     <p><em>without</em> trackBy</p>
+
     <div class="box">
         <div #noTrackBy *ngFor="let item of items">({{item.id}}) {{item.name}}</div>
 
@@ -130,11 +147,23 @@
     <p>with trackBy</p>
     <div class="box">
 
-        <div #withTrackBy *ngFor="let item of items; trackBy: trackByItems">({{item.id}}) {{item.name}}</div>
+        <div #withTrackBy *ngFor="let item of items; trackBy: trackByItems">({{item.id}}) {{item.name}} - {{item.rate}}
+        </div>
 
         <div id="withTrackByCnt" *ngIf="itemsWithTrackByCount">
             Item DOM elements change #{{itemsWithTrackByCount}} with trackBy
         </div>
+    </div>
+    <div>
+        <h3>Hosting a directive without a DOM element</h3>
+        <p>
+            I turned the corner
+            <ng-container *ngIf="conditionNgContainer">
+                and saw LyLy. I waved
+            </ng-container>
+            and continued on my way.
+        </p>
+        <button (click)="conditionNgContainer = ! conditionNgContainer">Tongle a text</button>
     </div>
 
 
@@ -142,17 +171,7 @@
 
 </div>
 
-<div>
-    <h3>Hosting a directive without a DOM element</h3>
-    <p>
-        I turned the corner
-        <ng-container *ngIf="conditionNgContainer">
-            and saw LyLy. I waved
-        </ng-container>
-        and continued on my way.
-    </p>
-    <button (click)="conditionNgContainer = ! conditionNgContainer">Tongle a text</button>
-</div>
+
 
 <hr>
 
@@ -197,7 +216,7 @@
         </div>
         <p [appHighlight]="color">Highlight me! (don't hanve defaultColor)</p>
 
-        <p [appHighlight]="color" defaultColor="violet" appFontStyle="normal">
+        <p [appHighlight]="color" [defaultColor]="violet" appFontStyle="normal">
             Highlight me too! (hanve defaultColor)
         </p>
 
@@ -221,11 +240,25 @@
     <h1>
         Building an structural directive
     </h1>
-    <div *appUnless="conditionUnless; else block">
-        This paragraph is displayed because the condition is false.
+    <div>
+        <h2>
+            *ngTemplateOutlet
+        </h2>
+        <ng-container *ngTemplateOutlet="greet"></ng-container>
+        <hr>
+        <ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
+        <hr>
+
+
+        <ng-template #greet><span>Hello</span></ng-template>
+        <ng-template #eng let-name let-person="name"><span>Hello {{name}} - {{person}} !</span></ng-template>
+
+    </div>
+    <div class="appUnlessclass" *appUnless="conditionUnless ; else block; let n = name; let age = age">
+        This paragraph is displayed because the condition is false. {{n}} - {{age}}
     </div>
     <ng-template #block>
-        This paragraph is displayed because the condition is true.
+        <div>This paragraph is displayed because the condition is true.</div>
     </ng-template>
     <button type="button" (click)="conditionUnless = !conditionUnless"
         [ngClass]="{ 'a': conditionUnless, 'b': !conditionUnless }">
@@ -237,14 +270,31 @@
     <h1>ngTemplateGuard_</h1>
     <div>
         <button (click)="onLoadHero()">Load Hero</button>
+
         <p *appIfLoaded="heroLoadingState">{{ heroLoadingState.data | json }}</p>
     </div>
 </div>
 
 <hr>
+
 <div>
     <h1>
         Directive composition API
     </h1>
     <app-child [appHighlight]="colorChildren"></app-child>
+</div>
+
+
+<div>
+    <h1>
+        *ngTemplateContextGuard
+    </h1>
+    <ul *appTrigonometry="30; sin as s; cos as c; tan as t">
+        <li>sin(30°): {{ s }}</li>
+        <li>cos(30°): {{ c }}</li>
+        <li>tan(30°): {{ t }}</li>
+    </ul>
+    <div *appTrigonometry="60; let s = sin">
+        <span> {{s}} </span>
+    </div>
 </div>
